@@ -1,0 +1,98 @@
+\documentclass[ngerman]{scrartcl}
+
+\usepackage{geometry}
+\geometry{left=2cm, bottom=1cm, top=2cm}
+% Kodierung
+\usepackage[T1]{fontenc}	% Ausgabe
+\usepackage[utf8]{inputenx}	% Eingabe
+
+% Deutsch
+\usepackage{babel}
+
+% Bilder
+\usepackage{graphicx}
+\usepackage{scrpage2}	%Layout
+\usepackage{hyperref}
+
+% Tabellen
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{tabularx}
+%%==============================================================================
+%%Eigene Befehle
+%%==============================================================================
+\renewcommand{\MakeTextField}[2]{{\vbox to #2{\vfill\hbox to #1{\hrulefill}}}}
+\newcommand{\Unterzeichner}{\$Vorname \$Nachname}
+
+%%==============================================================================
+%%Layout
+%%==============================================================================
+%\rohead{	\includegraphics[width=2cm]{stura_logo300.jpg}}	%Logo oben rechts
+\pagestyle{scrheadings}	%layout vom Package scrpage2
+\cfoot{}		% keine Seitenzahl, da einseitiges Dokument
+%%==============================================================================
+
+\begin{document}
+
+%\addsec{}
+
+\noindent
+	\parbox[top][15em][t]{\dimexpr.5\linewidth-7mm}
+	{%
+		Hochschule für\\
+		Technik und Wirtschaft Dresden –\\
+		Hochschule für angewandte Wissenschaften\\
+
+		z.\,H. Kanzlerin oder Kanzler\\
+		Friedrich-List-Platz 1\\
+		01069 Dresden
+	}%
+\hfill
+	\parbox[top][15em][t]{\dimexpr.5\linewidth-12mm}
+	{%
+		Studentinnen- und Studentenrat \\
+
+		Hochschule für\\
+		Technik und Wirtschaft Dresden –\\
+		Hochschule für angewandte Wissenschaften\\
+
+		Sprecherinnen und Sprecher\\
+		sp@stura.htw-dresden.de\\
+		www.stura.htw-dresden.de/stura/sp/
+	}%
+
+\begin{center}
+\begin{Large}Zugangsberechtigung für die Räumlichkeiten des StuRa \end{Large}\\
+i.V.m. Studentinnen- und Studentenausweis bzw. Personalausweis oder Reisepass
+\end{center}
+
+\begin{multicols}{2}[][1mm]
+\begin{tabularx}{\linewidth}{rXXX}
+Nr. 	& Name 	 & Vorname 	& s-Nr.\\ \hline
+1 & Mayer      & Anton   & XXXXX \\
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{rXXX}
+Nr. 	& Name 	 & Vorname 		& s-Nr.\\ \hline
+34 & Schmidt      & Agnes    & XXXXX \\
+\end{tabularx}
+%
+
+\end{multicols}
+%
+\bigskip
+\begin{tabular}{l*{2}{@{\,}l}}
+$*$ & \dots & beim StuRa angestellt \\
+$\#$ & \dots & der HTW Dresden angehörig \\
+\end{tabular}
+%
+\bigskip
+\begin{flushleft}
+\TextField[width={20em}]{Datum, Unterschrift:}
+\end{flushleft}
+
+\Unterzeichner \\
+Sprecherinnen und Sprecher StuRa HTW Dresden
+
+\end{document}

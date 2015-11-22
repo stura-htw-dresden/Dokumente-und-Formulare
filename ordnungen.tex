@@ -1,0 +1,133 @@
+\documentclass[
+    pdftex,
+%    twocolumn
+]{scrartcl}
+
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{tabularx}
+
+\usepackage[juratotoc]{scrjura}
+
+\usepackage{hyperref}
+\usepackage{units}
+\usepackage{eurosym}
+\DeclareUnicodeCharacter{20AC}{\euro}	% € as \euro or use \EUR{23,42}
+
+\title{Bezeichnung der Ordnung: z.B. Beitragsordnung}
+\newcommand{\Erlassdatum}{11.11.2013}
+\subtitle{ausführliche Bezeichnung der Ordnung: z.B. Beitragsordnung mit der Studentinnen- und Studentenschaft der Hochschule für Technik und Wirtschaft Dresden}
+\author{StuRa HTW Dresden}
+\date{Datum: z.B. \Erlassdatum}
+
+%don't use with scrjura
+\usepackage{fancyhdr}
+\chead{Bezeichnung der Ordnung: z.B. Beitragsordnung}
+\rhead[]{\Erlassdatum}
+\lhead[]{}
+\pagestyle{fancy}
+
+\setlength{\parindent}{0pt}
+%\setlength{\parskip}{\baselineskip}
+
+\renewcommand*{\thepart}{\arabic{part}}
+
+\newcounter{PraeSentenceCounter}
+\setcounter{PraeSentenceCounter}{0}
+\newcommand{\PraeSentence}{\addtocounter{PraeSentenceCounter}{1}\textsuperscript{\arabic{PraeSentenceCounter}}}
+
+\begin{document}
+
+\tableofcontents
+
+\maketitle
+
+\begin{contract}
+
+\minisec{Vorbemerkung}
+\PraeSentence erster Satz der Vorbemerkung: z.\,B. Die Beitragsordnung (im Folgenden BO genannt) ist Bestandteil der Ordnung der Studentenschaft der Hochschule für Technik und Wirtschaft Dresden (im Folgenden HTW Dresden genannt). 
+\PraeSentence weiterer Satz der Vorbemerkung: Sie wird auf Grund von \S\,29~Abs.\,1 des Gesetzes über die Hochschulen im Freistaat Sachsen (Sächsisches Hochschulgesetz - SächsHSG) vom 10.~Dezember~2008 (SächsGVBl. S.\,900) vom Studentinnen- und Studentenrat (im Folgenden StuRa genannt) erlassen und bedarf der Genehmigung des Rektorats.
+
+\parnumberfalse\part{Name des ersten Teils}\parnumbertrue
+%Paragraph ist für scrjura veraltet, ggf. section ohne scrjura nutzen, Titel dann ohne 'title=' setzen
+\Paragraph{title=Name des ersten Paragraphen}
+Text eines Paragraphen mit einem Satz.
+
+\Paragraph{title=Name eines weiteren Paragraphen}
+\Sentence Text eines ersten Satzes in einem weiteren Paragraphen.
+\Sentence Text eines weiteren Satzes in einem weiteren Paragraphen.
+
+\Paragraph{title=Name eines weiteren Paragraphen mit mehreren Absätzen}
+
+Text eines Absatzes mit einem Satz.
+
+\Sentence Text eines ersten Satzes in einem Absatz mit mehreren Sätzen.
+\Sentence Text eines weiteren Satzes in einem Absatz mit mehreren Sätzen.
+
+\Paragraph{title=Name eines weiteren Paragraphen mit mehreren Absätzen und mehreren Nummerierungen} \label{Name eines weiteren Paragraphen mit mehreren Absätzen und mehreren Nummerierungen}
+
+Text vor einer Nummerierung
+\begin{enumerate}
+\item Text der ersten Nummer,
+\item Text einer weiteren Nummer;
+\end{enumerate}
+Text nach einer Nummerierung.
+
+Text des nächsten Absatzes nach einer Nummerierung.
+
+\parnumberfalse\part{Name eines weiterer Teils}\parnumbertrue
+
+Beispiel für eine Einheit \unit[23]{KiB}
+Beispiel für einen Betrag \EUR{23}
+
+\parnumberfalse\part{Schlussbestimmung}\parnumbertrue
+
+\Paragraph{title=Schlussbestimmung}
+
+\newpage
+
+\parnumberfalse\minisec{Beschluss}\parnumbertrue
+
+Diese BO wurde auf der Sitzung des StuRa am 11.~Januar~2011 beschlossen.
+
+\end{contract}
+
+\parnumberfalse\minisec{Unterzeichnung des Beschlusses}\parnumbertrue
+
+Dresden, den 11.~Januar~2011
+
+\vfill
+
+\noindent
+\begin{tabularx}{\linewidth}{lXlX}
+\dotfill				& 	& \dotfill				& \tabularnewline
+FAK					&	& RSR					& \tabularnewline
+\tiny(Sprecherin StuRa HTW Dresden)	&	& \tiny(Sprecher StuRa HTW Dresden)	& \tabularnewline
+\end{tabularx}
+
+\vfill
+\vfill
+
+\parnumberfalse\minisec{Genehmigung}\parnumbertrue
+
+Die BO wurde am {Datum: z.B. 11.~Oktober~2011} vom Rektorat genehmigt.
+
+\parnumberfalse\minisec{Unterzeichnung der Genehmigung}\parnumbertrue
+
+Dresden, den {Datum: z.B. 11.~Oktober~2011}
+
+\vfill
+
+\noindent
+\begin{tabularx}{\linewidth}{lXlX}
+\dotfill			&	& 	& \tabularnewline
+Prof.\,Dr.\,Ing. Roland Stenzel	&	& 	& \tabularnewline
+\tiny(Rektorat HTW Dresden)	&	& 	& \tabularnewline
+\end{tabularx}
+
+\vfill
+\vfill
+
+\end{document}
