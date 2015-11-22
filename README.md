@@ -13,4 +13,4 @@ kuendigung_desk-netz.de.tex[]() | [Plone des Stura](http://www.stura.htw-dresden
 [kss_go_kss.tex](kss_go_kss.tex) | [Plone des Stura](http://www.stura.htw-dresden.de/members/PaulRiegel/erarbeitungen-zu-ordnungen/ordnungen-der-konferenz-saechischer-studierendenschaften/formvorlagen/latex/kss_go_kss.tex/view) | 22.11.2015
 [wahlvorschlag_fsrs.tex](wahlvorschlag_fsrs.tex) | [Plone des Stura](http://www.stura.htw-dresden.de/weitere/wahlen/wahlen-2013-2014/formulare/latex-vorlage-wahlvorschlag-fsr-2013/view) | 22.22.2015
 [wahlvorschlag_stura.tex](wahlvorschlag_stura.tex) | [Plone des Stura](http://www.stura.htw-dresden.de/weitere/wahlen/wahlen-2013-2014/formulare/latex-vorlage-wahlvorschlag-stura-2013/view) | 22.22.2015
-haertefallanerkennung.tex[]() | [Plone des Stura](http://www.stura.htw-dresden.de/weitere/ausschuesse/hfa/antrag-als-haertefall-zum-semesterbeitrag/vorlage-zum-antrag-auf-haertefallanerkennung/view) | 22.22.2015
+[haertefallanerkennung.tex](haertefallanerkennung.tex) | [Plone des Stura](http://www.stura.htw-dresden.de/weitere/ausschuesse/hfa/antrag-als-haertefall-zum-semesterbeitrag/vorlage-zum-antrag-auf-haertefallanerkennung/view) | 22.22.2015

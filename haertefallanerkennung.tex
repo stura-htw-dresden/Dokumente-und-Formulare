@@ -1,0 +1,332 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% filename:	Haertefallanerkennung.tex
+%% template:	Mon, 07 May 2012 13:01:14 +0200 (Hermann Lorenz)
+%% author:		Fabian Kunde
+%% Übersetzen:
+%%	`mkdir -p aux`
+%%	`lualatex -output-directory aux Haertefallanerkennung.tex`
+%%	Dazu muss die Datei 'stura_logo.pdf' im Verzeichnis liegen.
+%%	Es ist das Datum anzupassen, damit auf dem ausgedruckten Formular sofort
+%%	ersichtlich ist, wann die letzte Änderung vorgenommen wurde und ob
+%%	das Formular auf dem aktuellen Stand ist. ('\ofoot{Stand: ...}`)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[%
+	ngerman,	% an alle Packete weitergeben
+	parskip=half,
+	% für Package typearea
+	paper=a4,% Druckbereich A4
+	pagesize=auto	% Druckbereich als Papiergröße über-
+			% nehmen
+	]{scrartcl}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LuaLaTeX gesondert behandeln %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{ifluatex}
+\usepackage{eurosym}
+
+\usepackage{geometry}
+\usepackage{scrpage2}
+\geometry{left=1cm,right=1cm,top=1cm,bottom=1.5cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lokalisierung %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifluatex
+	\usepackage{fontspec}
+\else
+	\usepackage[utf8]{inputenx}	% Umlaute direkt eingeben
+	\usepackage[T1]{fontenc}	% Wörter mit Umlaute umbrechen
+\fi
+
+\usepackage{babel}				% deutsche Bezeichner
+\usepackage[autostyle,german=guillemets]{csquotes}	% \enquote{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Font %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifluatex
+	\setmainfont[Mapping=tex-text]{Linux Libertine O}
+	\setsansfont[Mapping=tex-text]{Linux Biolinum O}
+	\setmonofont[Mapping=tex-text,Scale=0.85]{DejaVu Sans Mono}
+\else
+	\usepackage{libertine}
+	\usepackage[scaled=0.9]{DejaVuSansMono}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tabellen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tabularx}
+\usepackage{booktabs}	% \toprule\midrule\bottomrule
+			% \addlinespace
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bilder %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}	% \includegraphics{bild.pdf}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Mathematische Symbole %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amssymb}
+\usepackage{amsmath}
+\ifluatex
+	\usepackage{unicode-math}
+	\setmathfont{Asana-Math.otf}
+	%\setmathfont{lmmath-regular.otf}
+	%\setmathfont{xits-math.otf}
+\else
+	\usepackage{amssymb}
+	\usepackage{amsfonts}
+\fi
+\usepackage{nicefrac}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Sonstige Symbole %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xspace}
+\usepackage{paralist}
+\usepackage{xcolor}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% pdf-links %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{hyperref}
+\definecolor{linkcolor}{rgb}{.2,.2,.7}
+\hypersetup{
+	colorlinks,	% farbige Links, nicht umrandet
+	linkcolor=linkcolor,	% Farbe fuer dokumentinterne Links
+	urlcolor=linkcolor,	% Farbe fuer dokumentexterne Links
+	linktoc=all,	% in Verzeichnissen Zahlen und Texte verlinken
+	unicode,	% Umlaute in PDF-Strings
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% eigene Macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\nachweis}[1]{\emph{(#1)}}
+
+\newsavebox{\InfoBlockBox}
+\newenvironment{InfoBlock}[1]{%
+%
+	\par\vspace{1em}\noindent\textbf{\textsf{\large#1}}\par\noindent%
+		\begin{lrbox}{\InfoBlockBox}%
+		\begin{minipage}{\dimexpr\linewidth-2\fboxrule-2\fboxsep}%
+	}{%
+		\end{minipage}%
+		\end{lrbox}
+		\fbox{\usebox{\InfoBlockBox}}%
+	}
+
+%%==============================================================================
+%% Allgemeine Formatierungen/Einstellungen
+%%==============================================================================
+\definecolor{bg-gray}{gray}{.9}
+\linespread{1.25}	% 1.5-facher Zeilenabstand (1.2 * 1.25 = 1.5)
+
+\ofoot{Stand: 12.\,Februar~2014\\[1cm]}
+\cfoot{\thepage\\[1cm]}
+\pagestyle{scrheadings}
+
+
+%%==============================================================================
+%% Formatierungen der Formularfelder
+%%==============================================================================
+\def\DefaultHeightofCheckBox{8px}
+\def\DefaultWidthofCheckBox{8px}
+\def\DefaultHeightofTextField{12px}
+
+\def\LayoutCheckField#1#2{\mbox{\mbox{#2}~#1}\xspace}
+\def\LayoutTextField#1#2{\mbox{\mbox{#1}~~\mbox{#2}}\xspace}
+
+
+%%==============================================================================
+%% Formatierungsbefehle
+%%==============================================================================
+\newcommand{\feldumbruch}{\\[1ex]}
+\newcommand{\feldpar}{\vspace{\dimexpr1ex+2ex}}
+\newcommand{\halflinefield}[2][]{%
+	\partlinefield[#1]{.32}{.15}{#2}%
+	}
+\newcommand{\partlinefield}[4][]{%
+	\makebox[\dimexpr#2\linewidth+#3\linewidth+1em][l]{%
+		\TextField[width=#2\linewidth,#1]
+			{\makebox[#3\linewidth][r]{#4}}%
+	}%
+}
+
+%%==============================================================================
+%% PDF-Metadaten
+%%==============================================================================
+\hypersetup{
+	pdftitle={Formular Antrag auf Haertefallanerkennung},
+	pdfauthor={StuRa HTW Dresden}%,
+}
+
+\newcommand{\Logo}{%
+	./img/stura_logo.pdf%
+}
+
+\begin{document}
+\begin{Form}
+
+\parbox{\dimexpr\textwidth-3cm}{%
+	\noindent%
+	\textbf{\huge Antrag auf Härtefallanerkennung}%
+}%
+%%------------------------------------------------------------------------------
+%% Logo
+%%------------------------------------------------------------------------------
+%\hfill%
+\parbox{3cm}{%
+%	\IfFileExists{\Logo}{	\includegraphics[width=3cm]{\Logo}	}{	Die Datei "\Logo" fehlt!	}%
+}
+
+%%------------------------------------------------------------------------------
+%% Allgemeine Angaben
+%%------------------------------------------------------------------------------
+\vspace{-8.0mm}
+\begin{InfoBlock}{Allgemeine Angaben}
+	\partlinefield[name=nachname]{.32}{.15}{Name}%
+	\partlinefield[name=vorname]{.37}{.10}{Vorname}%
+	\feldumbruch
+	\partlinefield[name=snummer]{.15}{.15}{Bibl.\,-\,Nr.}
+
+	\feldpar
+
+	\partlinefield[name=strasse]{.5}{.15}{Straße}\feldumbruch
+	\partlinefield[name=plz]{.1}{.15}{PLZ, Ort},%
+		\TextField[width=.5\linewidth,name=ort]{~}
+
+	\feldpar
+
+	\partlinefield[name=telefon]{.32}{.15}{Telefonnummer}%
+	\partlinefield[name=email]{.37}{.10}{E-Mail}%
+\end{InfoBlock}
+%%------------------------------------------------------------------------------
+%% Bankverbindung
+%%------------------------------------------------------------------------------
+
+\vspace{-3mm}
+\begin{InfoBlock}{Bankverbindung}
+	\partlinefield[name=iban]{.37}{.15}{IBAN}%
+	\partlinefield[name=bic]{.32}{.10}{BIC}%
+	\feldumbruch
+	\halflinefield[name=kontoinhaber]{Kontoinhaber}%
+	\halflinefield[name=kreditinstitut]{Kreditinstitut}%
+\end{InfoBlock}
+
+
+%%------------------------------------------------------------------------------
+%% Unterschrift
+%%------------------------------------------------------------------------------
+Ich bestätige die Richtigkeit der gemachten Angaben und Anlagen durch meine Unterschrift.
+
+\feldpar
+
+\TextField[name=datum]{Datum, Unterschrift}, \rule{5cm}{.4pt}
+
+\vspace{4mm}
+
+%%------------------------------------------------------------------------------
+%% Vom StuRa auszufüllen
+%%------------------------------------------------------------------------------
+\begin{tiny}Vom StuRa auszufüllen\end{tiny}
+
+\vspace{-7mm}
+\rule{\textwidth}{0.1pt}
+
+%%------------------------------------------------------------------------------
+%% Anlagen
+%%------------------------------------------------------------------------------
+\vspace{-6mm}
+\begin{InfoBlock}{Anlagen}
+
+	\CheckBox[name=immatrikulationsbescheinigung]{\parbox{\dimexpr0.5\textwidth-24pt}{Immatrikulationsbescheinigung}}%
+	\CheckBox[name=kopie]{\parbox{\dimexpr0.5\textwidth-24pt}{Kopie Studentenausweis}}%
+		\\
+		\CheckBox[name=bafoeg]{\parbox{\dimexpr0.5\textwidth-24pt}{BAföG-Bescheid bzw. Ablehnungsbescheid}}%
+		\CheckBox[name=darstellung]{\parbox{\dimexpr0.5\textwidth-24pt}{Schriftliche Darstellung der Notlage}}%
+		\\
+		\CheckBox[name=einkommensnachweis]{\parbox{\dimexpr0.5\textwidth-24pt}{Einkommensnachweis}}%
+		\CheckBox[name=krankenschein]{\parbox{\dimexpr0.5\textwidth-24pt}{ggf. Krankenschein}}%
+
+\end{InfoBlock}
+
+\vspace{-3mm}
+\begin{InfoBlock}{Der Antrag ist}
+
+	\CheckBox[name=angenommen]{\parbox[b]{\dimexpr0.5\textwidth-24pt}{angenommen}}%
+	\CheckBox[name=abgelehnt]{\parbox{\dimexpr0.5\textwidth-24pt}{abgelehnt}}%
+
+\end{InfoBlock}
+
+\vspace{-3mm}
+\begin{InfoBlock}{Stellungnahme Härtefallausschuss}
+	%\parbox[10cm]{\textwidth}{~}
+	\begin{minipage}[height=4.5cm]{\textwidth}
+		\vspace{4.5cm}
+	\end{minipage}
+\end{InfoBlock}
+
+\vspace{-3mm}
+\begin{InfoBlock}{Angaben zur Rückerstattung}
+	\partlinefield[name=rückerstattung]{.1}{.21}{Höhe der Rückerstattung}\euro{}%
+\end{InfoBlock}
+\end{Form}
+
+\newpage
+
+%%==============================================================================
+%% R U E C K S E I T E =========================================================
+%%==============================================================================
+%\clearpage
+	\parbox{\dimexpr\textwidth-3cm}{%
+		\noindent%
+	\textbf{\huge Antrag auf Härtefallanerkennung}}%
+\hfill
+\parbox{3cm}{%
+%	\IfFileExists{\Logo}{	\includegraphics[width=3cm]{\Logo}	}{	Die Datei \enquote{\Logo} fehlt!	}%
+}
+
+\vspace{-8.0mm}
+\begin{InfoBlock}{Genehmigung und Anweisung}
+	\parbox{.39\textwidth}{Unterschrift Mitglied Härtefallausschuss}\TextField[name=datum1]{Dresden, den} \rule{5cm}{.4pt}\\%
+	\parbox{.39\textwidth}{Unterschrift Mitglied Härtefallausschuss}\TextField[name=datum2]{Dresden, den} \rule{5cm}{.4pt}\\%
+	\parbox{.39\textwidth}{Unterschrift Mitglied Härtefallausschuss}\TextField[name=datum3]{Dresden, den} \rule{5cm}{.4pt}\\%
+	\parbox{.39\textwidth}{Unterschrift Mitglied Referat Finanzen}\TextField[name=datum4]{Dresden, den} \rule{5cm}{.4pt}%
+\end{InfoBlock}
+
+%%------------------------------------------------------------------------------
+%% Fuss
+%%------------------------------------------------------------------------------
+\vfill
+\noindent
+\parbox{.3\linewidth}{
+Kontakt:\\
+StuRa HTW Dresden\\
+Friedrich-List-Platz~1\\
+01069~Dresen\\
+\hspace{0em}
+}
+\hfill
+\parbox{.3\linewidth}{
+\hspace{0em}\\
+\href{http://www.stura.htw-dresden.de}{www.stura.htw-dresden.de}\\
+\href{mailto:stura@stura.htw-dresden.de}{stura@stura.htw-dresden.de}\\
+Telefon: 0351~462-3249\\
+Telefax: 0351~462-3240\\
+\hspace{0em}
+}
+\hfill
+\parbox{.3\linewidth}{
+Bankverbindung:\\
+Kontoinhaber: StuRa HTW Dresden\\
+IBAN: DE\,098\,505\,030\,031\,201\,115\,45\\
+BIC: OSD\,DDE\,81X\,XX\\
+Ostsächsische Sparkasse Dresden
+}
+\end{document}
