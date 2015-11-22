@@ -1,32 +1,61 @@
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# Word Dokumente
+*.doc	# Microsoft Word 97 to 2003 Dokument
+dochtml	# Microsoft Word HTML Dokument
+docm	# Microsoft Word 2007/2010 Open XML macro-enabled Dokument
+docmhtml	# Microsoft Word MIME HTML Dokument
+docx	# Microsoft Word 2007/2010 Open XML Dokument
+dot	# Microsoft Word 97 to 2003 Dokument Template (Vorlage)
+dothtml	# Microsoft Word HTML Dokument Template (Vorlage)
+dotm	# Microsoft Word 2007/ 2010 Open XML macro-enabled Dokument Template (Vorlage)
+dotx	# Microsoft Word 2007 or Word 2010 XML Dokument Template (Vorlage)
+#*.dox	# auch Doxygen; Microsoft Word text Dokument
 
-# Precompiled Headers
-*.gch
-*.pch
+# Excel Dokumente
+*.xls
+*.xla	#Microsoft Excel Add-in
+*.xlam	# Microsoft Excel 2007/2010 Open XML macro-enabled add-in
+*.xlb	# Microsoft Excel Toolbars
+*.xlc	# Microsoft Excel Chart
+*.xlc3	# Microsoft Excel 3 für Mac Chart
+*.xlc4	# Microsoft Excel 4 für Mac Chart
+*.xlc_	# Microsoft Excel 2 für Mac Chart
+*.xll	# Microsoft Excel Add-in
+*.xlm	# Microsoft Excel Macro
+*.xlr	# Microsoft Works spreadsheet or chart
+*.xls	# Microsoft Excel 97 to 2003 Workbook
+*.xlsb	# Microsoft Excel 2007/2010 binary workbook
+*.xlshtml	# Microsoft Office Excel HTML Dokument
+*.xlsm	# Microsoft Excel 2007/2010 Open XML macro-enabled workbook
+*.xlsmhtml	# Microsoft Excel MIME HTML spreadsheet
+*.xlsx	# Microsoft Excel 2007/2010 Open XML workbook
+*.xlt	# Microsoft Excel 97 to 2003 workbook Template (Vorlage)
+*.xlthtml	# Microsoft Office Excel HTML Template (Vorlage)
+*.xltm	# Microsoft Excel 2007/2010 Open XML macro-enabled workbook Template (Vorlage)
+*.xltx	# Microsoft Excel 2007/2010 Open XML workbook Template (Vorlage)
+*.xlw	# Microsoft Excel Workspace
+*.xlw	# Microsoft Excel Workspace
+*.xl	# Microsoft Excel Spreadsheet
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
+# Powerpoint Dokumente
+*.pp2	# Poser prop
+*.pp4	# Micrografix Picture Publisher bitmap graphics
+*.pp5	# Micrografx Picture Publisher 5 bitmap
+*.ppa	# Microsoft PowerPoint 97 to 2003 add-in
+*.ppam	# Microsoft PowerPoint 2007/2010 macro-enabled Open XML add-in
+*.ppg	# Microsoft PowerPoint Präsentation
+*.ppnt	# Microsoft PowerPoint für Mac Präsentation
+*.ppot	# Microsoft PowerPoint für Mac Template (Vorlage)
+*.pps	# Microsoft PowerPoint 97 to 2003 complete slide show
+*.pps	# Microsoft PowerPoint 97 to 2003 complete slide show
+*.ppsm	# Microsoft PowerPoint 2007/2010 macro-enabled Open XML complete slide show
+*.ppsx	# Microsoft PowerPoint 2007/2010 Open XML complete slide show
+*.ppt	# Microsoft PowerPoint 97 to 2003 Präsentation
+*.ppt3	# Microsoft PowerPoint für Mac Präsentation
+*.ppthtml	# Microsoft PowerPoint HTML Präsentation
+*.pptm	# Microsoft PowerPoint 2007/2010 macro-enabled Open XML Präsentation
+*.pptmhtml	# Microsoft PowerPoint MIME HTML Präsentation
+*.pptv	# Microsoft PowerPoint
+*.pptx	# Microsoft PowerPoint 2007/2010 Open XML Präsentation
+*.pptxml	# Microsoft Powerpoint XML Präsentation
+*.ppv	# Microsoft Pocket PowerPoint Präsentation
+*.ppz	# Microsoft PowerPoint Packaged Presentation
