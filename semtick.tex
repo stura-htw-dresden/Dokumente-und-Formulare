@@ -1,0 +1,568 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% filename:	semtick.tex
+%% template:	Mon, 07 May 2012 13:01:14 +0200
+%% author:	Hermann Lorenz, geändert von Fabian Kunde, Kleinigkeiten von Wolf
+%% date:
+%%	21. Nov 2015	Wolf (auf der Suche nach Beispielen für PDF-Formulare)
+%%		* Logo wirft keine Fehlermeldung mehr wenn die externe Datei fehlt
+%%		* Fallback ist das aktuelle SturaLogo und fest hier eingebettet
+%%	25. Jun 2015	Fabian Kunde
+%%		* Beträge für das Jahresticket aktualisiert
+%%		* Matrikelnummer durch s-Nummer ersetzt
+%%		* Neues Logo integriert (Achtung:Datei wurde angepasst!!!! Dateiname muss passen oder ggf. angepasst werden)
+%%		* Datum wird automatisch auf das aktuelle gestzt
+%%	23. Jan 2014	Hermann Lorenz
+%%		* alle Felder mit symbolischen Namen versehen (vorher wurden
+%%		  mehrere Felder unter AdobeReader immer mit dem selben Inhalt
+%%		  versehen)
+%%		* dazu wurden auch die neuen Befehle \partlinefield und
+%%		* \halflinefield angepasst
+%%		* Rechtschreibfehler korrigiert
+%%		* Quelltextformatierungen auf 80 Zeichen begrenzt
+%%	16. Jan 2014 Fabian Kunde
+%%		* ???
+%%	21. Jan 2014 Fabian Kunde
+%%		* ???
+%%	24. Jun 2013 14:18  Hermann Lorenz
+%%		* erstellt
+%% Übersetzen:
+%%	`mkdir -p aux`
+%%	`lualatex -output-directory aux semtick.tex`
+%%	Dazu soll die Datei 'stura-logo.png' (mit dem aktuellen Logo) im Verzeichnis liegen.
+%%	Der Nahme der Datei kann selbstverständlich angepasst werden, er muss nur im Feld
+%%	\includegraphics[<Ausrichtung Text in der Box>(t,c,b)][<Breite>(width=) und/oder <Höhe>(height=)]{<Dateiname>}
+%%	eingetragen werden.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[%
+	ngerman,	% an alle Packete weitergeben
+	parskip=half,
+	% für Package typearea
+	paper=a4,% Druckbereich A4
+	pagesize=auto	% Druckbereich als Papiergröße über-
+			% nehmen
+	]{scrartcl}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LuaLaTeX gesondert behandeln %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{ifluatex}
+
+\usepackage{geometry}
+\usepackage{scrpage2}
+\geometry{left=1cm,right=1cm,top=1cm,bottom=1.5cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lokalisierung %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifluatex
+	\usepackage{fontspec}
+\else
+	\usepackage[utf8]{inputenx}	% Umlaute direkt eingeben
+	\usepackage[T1]{fontenc}	% Wörter mit Umlaute umbrechen
+\fi
+
+\usepackage{babel}				% deutsche Bezeichner
+\usepackage[autostyle,german=guillemets]{csquotes}	% \enquote{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Font %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifluatex
+	\setmainfont[Mapping=tex-text]{Linux Libertine O}
+	\setsansfont[Mapping=tex-text]{Linux Biolinum O}
+	\setmonofont[Mapping=tex-text,Scale=0.85]{DejaVu Sans Mono}
+\else
+	\usepackage{libertine}
+	\usepackage[scaled=0.85]{DejaVuSansMono}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tabellen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tabularx}
+\usepackage{booktabs}	% \toprule\midrule\bottomrule
+			% \addlinespace
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bilder %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}	% \includegraphics{bild.pdf}
+\usepackage{tikz}
+\usepackage{environ}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Mathematische Symbole %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amssymb}
+\usepackage{amsmath}
+\ifluatex
+	\usepackage{unicode-math}
+	\setmathfont{Asana-Math.otf}
+	%\setmathfont{lmmath-regular.otf}
+	%\setmathfont{xits-math.otf}
+\else
+	\usepackage{amssymb}
+	\usepackage{amsfonts}
+\fi
+\usepackage{nicefrac}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Sonstige Symbole %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xspace}
+\usepackage{paralist}
+\usepackage{xcolor}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% pdf-links %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{hyperref} %macht auch for Formulare
+\definecolor{linkcolor}{rgb}{.2,.2,.7}
+\hypersetup{
+	colorlinks,	% farbige Links, nicht umrandet
+	linkcolor=linkcolor,	% Farbe fuer dokumentinterne Links
+	urlcolor=linkcolor,	% Farbe fuer dokumentexterne Links
+	linktoc=all,	% in Verzeichnissen Zahlen und Texte verlinken
+	unicode,	% Umlaute in PDF-Strings
+	}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% eigene Macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\nachweis}[1]{\emph{(#1)}}
+
+\newsavebox{\InfoBlockBox}
+\newenvironment{InfoBlock}[1]{%
+	\par\vspace{1em}\noindent\textbf{\textsf{\large#1}}\par\noindent%
+		\begin{lrbox}{\InfoBlockBox}%
+		\begin{minipage}{\dimexpr\linewidth-2\fboxrule-2\fboxsep}%
+	}{%
+		\end{minipage}%
+		\end{lrbox}
+		\fbox{\usebox{\InfoBlockBox}}%
+	}
+
+%%==============================================================================
+%% Allgemeine Formatierungen/Einstellungen
+%%==============================================================================
+\definecolor{bg-gray}{gray}{.9}
+\linespread{1.25}	% 1.5-facher Zeilenabstand (1.2 * 1.25 = 1.5)
+
+\ofoot{Stand: \today\\[1cm]}
+\cfoot{\thepage\\[1cm]}
+\pagestyle{scrheadings}
+
+
+%%==============================================================================
+%% Formatierungen der Formularfelder
+%%==============================================================================
+\def\DefaultHeightofCheckBox{8px}
+\def\DefaultWidthofCheckBox{8px}
+\def\DefaultHeightofTextField{12px}
+
+\def\LayoutCheckField#1#2{\mbox{\mbox{#2}~#1}\xspace}
+\def\LayoutTextField#1#2{\mbox{\mbox{#1}~~\mbox{#2}}\xspace}
+
+
+%%==============================================================================
+%% Formatierungsbefehle
+%%==============================================================================
+\newcommand{\feldumbruch}{\\[1ex]}
+\newcommand{\feldpar}{\vspace{\dimexpr1ex+2ex}}
+\newcommand{\halflinefield}[2][]{%
+	\partlinefield[#1]{.32}{.15}{#2}%
+	}
+\newcommand{\partlinefield}[4][]{%
+	\makebox[\dimexpr#2\linewidth+#3\linewidth+1em][l]{%
+		\TextField[width=#2\linewidth,#1]
+			{\makebox[#3\linewidth][r]{#4}}%
+		}%
+	}
+
+
+%%==============================================================================
+%% PDF-Metadaten
+%%==============================================================================
+\hypersetup{
+	pdftitle={Antrag auf Rückerstattung/Befreiung/Nachkauf},
+	pdfauthor={StuRa HTW Dresden},
+	}
+
+%\newcommand{\StuRaLogoFile}{./stura-logo.png}%jpg und gif gingen auch, dann iss aber genauso (pixel-)kacke
+\newcommand{\StuRaLogoFile}{./stura-logo.pdf}%nehmt bitte eine saubere SVG (z.B. bei https://github.com/stura-htw-dresden/htw-logo/), Anleitung PDF bauen ist dabei
+\IfFileExists{\StuRaLogoFile}{}{
+	\definecolor{schwarz}{RGB}{0,0,0}
+	\definecolor{htworange}{RGB}{240,172,43}
+}
+
+%define scaling for tikz
+\makeatletter
+\newsavebox{\measure@tikzpicture}
+\NewEnviron{scaletikzpicturetowidth}[1]{%
+  \def\tikz@width{#1}%
+  \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+  \BODY
+  \end{lrbox}%
+  \pgfmathparse{#1/\wd\measure@tikzpicture}%
+  \edef\tikzscale{\pgfmathresult}%
+  \BODY
+}
+\NewEnviron{scaletikzpicturetoheight}[1]{%
+  \def\tikz@width{#1}%
+  \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+  \BODY
+  \end{lrbox}%
+  \pgfmathparse{#1/\ht\measure@tikzpicture}%
+  \edef\tikzscale{\pgfmathresult}%
+  \BODY
+}
+\makeatother
+
+\begin{document}
+\begin{Form}
+
+%%------------------------------------------------------------------------------
+%% Antragsart/Semester
+%%------------------------------------------------------------------------------
+	\parbox{\dimexpr\linewidth-4.5cm}{%
+	\noindent
+	{\LARGE\textsf Antrag auf~
+		\CheckBox[name=antragbefreiung]{Befreiung}
+		\CheckBox[name=antragrueckerstattung]{Rückerstattung}
+		\CheckBox[name=antragnachkauf]{Nachkauf}}\\
+	von der Beitragsrate des studentischen Jahrestickets für das\feldumbruch
+	\CheckBox[name=fuerss]{\makebox[3cm][l]{Sommersemester}}
+		\TextField[width=2cm,name=ssjahr1]{~} (Jahr)\feldumbruch
+	\CheckBox[name=fuerws]{\makebox[3cm][l]{Wintersemester}}
+		\TextField[width=2cm,name=wsjahr1]{~}~~/~%
+		\TextField[width=2cm,name=wsjahr2]{~} (Jahr)
+}%
+\hfill%
+%%------------------------------------------------------------------------------
+%% Logo
+%%------------------------------------------------------------------------------
+\IfFileExists{\StuRaLogoFile}{
+	\newcommand{\StuRaLogo}{%
+		\includegraphics*[width=4cm]{\StuRaLogoFile}%
+	}
+}{
+	% nothing, inline or input the Logo as you wish
+	\newcommand{\StuRaLogo}{\begin{tikzpicture}[y=0.80pt, x=0.80pt, yscale=-0.15, xscale=0.15, inner sep=0pt, outer sep=0pt]%[scale=\tikzscale]
+	\path[fill=schwarz] (131.9062,0.0000) .. controls (121.3063,0.0000) and
+	  (110.8063,4.9937) .. (100.4062,15.0938) .. controls (98.9062,16.7937) and
+	  (93.2875,23.3938) .. (92.1875,25.0938) .. controls (83.0359,40.5922) and
+	  (72.7150,56.9183) .. (64.6875,70.4062) .. controls (63.5875,72.0062) and
+	  (61.0063,78.7062) .. (60.4062,80.4062) -- (60.3125,80.4062) .. controls
+	  (58.5125,90.5062) and (62.7875,95.5005) .. (73.1875,95.5000) --
+	  (157.5938,95.5000) -- (130.0625,140.8125) -- (21.5938,140.8125) --
+	  (0.0000,176.0000) -- (120.5000,176.0000) .. controls (131.2000,176.0000) and
+	  (141.6000,171.0062) .. (152.0000,160.9062) -- (151.9063,160.9062) .. controls
+	  (153.3063,159.2063) and (159.0063,152.5125) .. (159.9063,150.8125) .. controls
+	  (173.8596,128.6079) and (188.1732,104.8225) .. (200.0000,85.4062) .. controls
+	  (201.1000,83.8063) and (201.9938,82.1063) .. (202.5938,80.4062) .. controls
+	  (204.4938,70.4062) and (201.8875,60.3125) .. (191.1875,60.3125) --
+	  (106.9063,60.3125) -- (122.4063,35.1875) -- (230.9063,35.1875) --
+	  (243.1875,15.0938) -- (252.5000,0.0000) -- cycle(266.9062,0.0000) .. controls
+	  (259.7267,11.7404) and (252.5209,23.4648) .. (245.3125,35.1875) --
+	  (301.8750,35.1875) -- (215.6875,176.0000) -- (251.9062,176.0000) .. controls
+	  (280.8223,129.2741) and (309.3841,82.1635) .. (338.0625,35.1875) --
+	  (390.0000,35.1875) -- (411.5938,0.0000) -- cycle(426.0938,0.0000) --
+	  (339.8125,140.8125) -- (333.5938,150.8125) .. controls (332.5938,152.5125) and
+	  (330.3000,159.2063) .. (329.5000,160.9062) .. controls (327.5000,171.0062) and
+	  (331.8062,176.0000) .. (342.4062,176.0000) -- (438.9062,176.0000) .. controls
+	  (449.5063,176.0000) and (460.0125,171.0062) .. (470.3125,160.9062) .. controls
+	  (471.7125,159.2063) and (477.4125,152.5125) .. (478.3125,150.8125) --
+	  (484.5000,140.8125) .. controls (513.2206,93.8698) and (541.9568,46.9366) ..
+	  (570.6875,0.0000) -- (534.5938,0.0000) -- (448.3125,140.8125) --
+	  (376.0000,140.8125) -- (462.1875,0.0000) -- cycle(804.5938,0.0000) --
+	  (629.3125,176.0938) -- (670.3125,176.0938) -- (710.3125,135.8125) --
+	  (778.3125,135.8125) -- (769.0937,176.0938) -- (810.0937,176.0938) --
+	  (850.4062,0.0000) -- cycle(798.6875,47.0000) -- (786.3125,100.5938) --
+	  (745.3125,100.5938) -- cycle;
+	\path[fill=htworange] (585.1875,0.0000) -- (477.3125,176.0000) --
+	  (513.5000,176.0000) .. controls (530.0935,149.3168) and (546.4228,122.4480) ..
+	  (562.8438,95.5938) -- (633.6250,95.5938) -- (585.8125,176.0000) --
+	  (622.0000,176.0000) -- (665.1875,105.5938) .. controls (666.2875,103.9938) and
+	  (668.7125,97.2938) .. (669.3125,95.5938) -- (669.3125,95.5000) .. controls
+	  (671.2791,85.4308) and (668.7553,75.4062) .. (658.1875,75.4062) .. controls
+	  (677.8048,76.3801) and (683.9009,66.8949) .. (690.8125,60.3125) .. controls
+	  (692.0125,58.7125) and (697.9000,52.0125) .. (699.0000,50.3125) --
+	  (714.4062,25.0938) .. controls (715.4062,23.3938) and (716.3937,21.7937) ..
+	  (717.0938,20.0938) .. controls (723.0938,4.2937) and (716.3875,0.0000) ..
+	  (705.6875,0.0000) -- cycle(599.8125,35.1875) -- (672.0938,35.1875) --
+	  (656.5000,60.3125) -- (584.1875,60.3125) -- cycle;
+	\end{tikzpicture}}%
+}
+%important to prevent linebreak
+\parbox[3cm]{4cm}{%
+%	\begin{scaletikzpicturetowidth}{\textwidth}
+		\StuRaLogo%
+%	\end{scaletikzpicturetowidth}
+}
+
+%%------------------------------------------------------------------------------
+%% allgemeine Angaben
+%%------------------------------------------------------------------------------
+\begin{InfoBlock}{allgemeine Angaben}
+	\partlinefield[name=nachname]{.32}{.15}{Name}%
+	\partlinefield[name=vorname]{.37}{.10}{Vorname}%
+	\feldumbruch
+	\partlinefield[name=bibnr]{.15}{.15}{Bibl.-Nr.}
+
+	\feldpar
+
+	\partlinefield[name=strasse]{.5}{.15}{Straße}\feldumbruch
+	\partlinefield[name=plz]{.1}{.15}{PLZ, Ort},%
+		\TextField[width=.5\linewidth,name=ort]{~}
+
+	\feldpar
+
+	\partlinefield[name=telefon]{.32}{.15}{Telefonnummer}%
+	\partlinefield[name=email]{.37}{.10}{E-Mail}%
+\end{InfoBlock}
+
+%%------------------------------------------------------------------------------
+%% Bankverbindung
+%%------------------------------------------------------------------------------
+\begin{InfoBlock}{Bankverbindung (nur bei Rückerstattung)}
+	\partlinefield[name=iban]{.37}{.15}{IBAN}%
+	\partlinefield[name=bic]{.32}{.10}{BIC}%
+	\feldumbruch
+	\halflinefield[name=kontoinhaber]{Kontoinhaber}%
+	\halflinefield[name=kreditinstitut]{Kreditinstitut}%
+\end{InfoBlock}
+
+%%------------------------------------------------------------------------------
+%% Grund
+%%------------------------------------------------------------------------------
+\begin{InfoBlock}{Befreiungs-/Erstattungsgrund/Nachkauf \nachweis{Nachweise in Klammern}}
+	\CheckBox[name=begruendungausland]{Auslandssemester ohne Beurlaubung}
+		\nachweis{Nachweis der Hochschule}\\
+	\CheckBox[name=begruedungpraktikum]{Praktikumssemester außerhalb des
+		Gültigkeitsbereiches des Tickets im VVO}
+		\nachweis{Praktikumsvereinbarung}\\
+	\CheckBox[name=begruendungabschlussarbeit]{Abschlussarbeit außerhalb des
+		Gültigkeitsbereiches des Tickets im VVO}
+		\nachweis{entsprechende Vereinbarung}\\
+	\CheckBox[name=begruendungexma]{Exmatrikulation im laufenden Semester}
+		\nachweis{Exmatrikulationsbescheinigung}\\
+	\CheckBox[name=begruedungurlaub]{Urlaubssemester}
+		\nachweis{genehmigter Urlaubssemesterantrag oder
+		Immatrikulationsbescheinigung mit dem Vermerk
+		Urlaubssemester}\feldumbruch
+	\CheckBox[name=begruedungnachkauf]{Nachkauf}
+		\TextField[width=2cm,name=nachkaufgueltigkeitmonat]{Ticket
+			gültig ab} (Monat)~~/~%
+		\TextField[width=2cm,name=nachkaufgueltigkeitjahr]{~}
+			(Jahr)\feldumbruch
+	\CheckBox[name=begruendungsonstiges]{Sonstiges}
+		\TextField[width=.8\linewidth,name=begruedungsonstigestext]{~}
+\end{InfoBlock}
+
+%%------------------------------------------------------------------------------
+%% Unterschrift
+%%------------------------------------------------------------------------------
+Mit meiner Unterschrift bestätige ich, dass ich die Beitragsordnung zur
+Kenntnis genommen habe.
+
+\feldpar
+
+\TextField[name=datum]{Datum, Unterschrift}, \rule{5cm}{.4pt}
+
+
+%%------------------------------------------------------------------------------
+%% StuRa-/StudSek-Box
+%%------------------------------------------------------------------------------
+	\vfill
+
+\noindent%
+\frame{\colorbox{bg-gray}
+{%
+	\parbox[top][14.8em][t]{\dimexpr.5\linewidth-2\fboxrule-7mm}
+	{%
+		\begin{tiny}Vom StuRa auszufüllen\end{tiny}\\[2ex]
+		\makebox[2.5cm][r]{Antragsdatum}~\rule{5cm}{.4pt}\\[2ex]
+		\makebox[2.5cm][r]{Betrag}~\rule{3cm}{.4pt}\\[2ex]
+		\begin{small}Signum/Stempel:\end{small}
+	}%
+}}%
+\hfill%
+\frame{\colorbox{bg-gray}
+{%
+	\parbox[top][14.8em][t]{\dimexpr.5\linewidth-2\fboxrule-7mm}
+	{%
+		\begin{tiny}Vom StudSek auszufüllen\end{tiny}\\[2ex]
+		\makebox[2.5cm][r]{Datum}~\rule{5cm}{.4pt}\\[2ex]
+		\\[2ex]
+		\begin{small}Signum/Stempel:\end{small}
+	}%
+}}
+\end{Form}
+
+
+
+%%==============================================================================
+%% R U E C K S E I T E =========================================================
+%%==============================================================================
+\clearpage
+\linespread{1}	% 1.2-facher Zeilenabstand (1.2 * 1.0 = 1.2)
+
+%%------------------------------------------------------------------------------
+%% Firmennachweis
+%%------------------------------------------------------------------------------
+\noindent
+Nachweis zum Antrag:
+
+\noindent\hspace*{2em}\partlinefield[name=firma]{.5}{.15}{Firma}\feldumbruch
+\hspace*{2em}\partlinefield[name=firmenanschrift]{.5}{.15}{Anschrift}%
+	\feldumbruch
+\hspace*{2em}\partlinefield[name=firmenanstellung]{.5}{.15}{Zeitraum der
+	Anstellung}\feldumbruch
+\hspace*{2em}\makebox[.15\linewidth][r]{Signum/Stempel}
+
+%\vspace{2.2cm}
+\vfill
+
+%%------------------------------------------------------------------------------
+%% Hinweistexte
+%%------------------------------------------------------------------------------
+\hrule
+Liebe Studentinnen und Studenten,\\
+dieses Formblatt bietet Euch drei Möglichkeiten einen Antrag zu stellen:
+\footnotesize
+%\small{
+\begin{compactenum}
+\item	Antrag auf Befreiung für ein Semester vom studentischen Jahresticket
+	(Nur möglich, vor Ablauf des Rückmeldezeitraums und wenn der
+	Semesterbeitrag noch nicht bezahlt wurde.)
+
+\item	Antrag auf Rückerstattung des studentischen Jahrestickets für ein
+	Semester (Nur möglich, wenn der Semesterbeitrag vollständig gezahlt
+	wurde und die Chipkarte bei Antragstellung vorliegt.)
+
+\item	Antrag auf Nachkauf des studentischen Jahrestickets (Nur möglich, wenn
+	vorher keine Rückerstattung, sondern eine Befreiung erfolgt ist. Die
+	Nachzahlung der Beitragsrate für das studentische Jahresticket kann per
+	Überweisung an den oder per Barzahlung im StuRa erfolgen. Eine
+	Kartenzahlung ist nicht möglich!)
+\end{compactenum}
+
+Eine Befreiung/Rückerstattung kann nur erfolgen, wenn sich der/die Studierende
+aufgrund der auf der Vorderseite aufgeführten Gründe außerhalb des
+Verkehrsverbundes Oberelbe (VVO) aufhält oder exmatrikuliert ist.
+
+Zur Genehmigung muss der entsprechende Nachweis angefügt werden (Kopie der
+entsprechenden Vereinbarung bzw. der Imma- oder Exmatrikulationsbescheinigung).
+Es werden nur vollständige Anträge bearbeitet!
+
+\minisec{Abgabefristen:}
+\begin{compactitem}
+\item[\emph{Befreiung:}]
+	Bis zum Ende des Rückmeldezeitraums.
+\item[\emph{Rückerstattung:}]
+	Entsprechend der unten aufgeführten Tabelle erfolgt die Erstattung
+	anteilmäßig. Für jeden angefangenen und verstrichenen Monat der
+	Gültigkeit wird $\nicefrac{1}{6}$ weniger vom Beitrag für das
+	studentische Ticket des jeweiligen Semesters erstattet.
+\end{compactitem}
+
+\begin{center}
+\begin{tabular}{cccc}
+	\toprule
+		WS bis \dots
+			& SS bis \dots
+			& Betrag für Rückerstattung in Euro
+			& Betrag für Nachkauf in Euro
+			\tabularnewline
+	\midrule
+			31.\,08.
+			& 28. bzw. 29.\,02.
+			& 175,80 ($\nicefrac{6}{6}$)
+			& 175,80 ($\nicefrac{6}{6}$)
+			\tabularnewline
+			30.\,09.
+			& 31.\,03.
+			& 146,50 ($\nicefrac{5}{6}$)
+			& 175,80 ($\nicefrac{6}{6}$)
+			\tabularnewline
+			31.\,10.
+			& 30.\,04.
+			& 117,20 ($\nicefrac{4}{6}$)
+			& 146,50 ($\nicefrac{5}{6}$)
+			\tabularnewline
+			30.\,11.
+			& 31.\,05.
+			& 87,90 ($\nicefrac{3}{6}$)
+			& 117,20 ($\nicefrac{4}{6}$)
+			\tabularnewline
+			31.\,12.
+			& 15.\,06.
+			& 58,60 ($\nicefrac{2}{6}$)
+			& 87,90 ($\nicefrac{3}{6}$)
+			\tabularnewline
+			15.\,01.
+			& --- 		
+			& 29,30 ($\nicefrac{1}{6}$)
+			& 58,60 ($\nicefrac{2}{6}$)
+			\tabularnewline
+		\multicolumn{2}{c}{danach}
+			& keine Rückerstattung
+			& kein Nachkauf
+			\tabularnewline
+	\bottomrule
+\end{tabular}
+\end{center}
+
+\emph{Aus technischen Gründen kann eine Entwertung der Studentenausweise
+(Chipkarten) und damit eine Rückerstattung nur bis spätestens zum
+15.\,06.~(SS)/""15.\,01.~(WS) erfolgen. Die Anträge sind rechtzeitig zu stellen!}
+
+Bei Rückerstattung muss der Semesterbeitrag bereits vollständig eingezahlt
+worden sein und der Studentenausweis (Chipkarte) muss bei Antragsabgabe
+vorliegen, damit dieser vom Studentensekretariat zurückgesetzt werden kann.
+
+Die Überweisung kann aus verwaltungstechnischen Gründen mehrere Wochen
+dauern. Auf eine Bearbeitung des Antrages innerhalb der vorlesungsfreien
+Zeit besteht kein Anspruch!
+
+Grundlage für die Befreiung bzw. Rückerstattung von studentischen
+Jahresticketbeiträgen und dem Nachkauf des studentischen Jahrestickets ist die
+Beitragsordnung der Studentinnen- und Studentenschaft der Hochschule für Technik
+und Wirtschaft Dresden sowie die Verträge zwischen den Studentenräten der
+Hochschulen in der Stadt Dresden und dem VVO sowie der DVB AG und der DB Regio
+AG über das studentische Jahresticket.
+
+Bitte informiere Dich auch auf der Internetseite des StuRa:
+\url{http://www.stura.htw-dresden.de}
+
+%%------------------------------------------------------------------------------
+%% Fuss
+%%------------------------------------------------------------------------------
+\noindent
+\parbox{.3\linewidth}{
+Kontakt:\\
+StuRa HTW Dresden\\
+Friedrich-List-Platz~1\\
+01069~Dresen\\
+\hspace{0em}
+}
+\hfill
+\parbox{.3\linewidth}{
+\hspace{0em}\\
+\href{mailto:ticket@stura.htw-dresden.de}{ticket@stura.htw-dresden.de}\\
+Telefon: 0351~462-3249\\
+Telefax: 0351~462-3240\\
+\hspace{0em}
+}
+\hfill
+\parbox{.3\linewidth}{
+Bankverbindung:\\
+Kontoinhaber: StuRa HTW Dresden\\
+IBAN: DE\,098\,505\,030\,031\,201\,115\,45\\
+BIC: OSD\,DDE\,81X\,XX\\
+Ostsächsische Sparkasse Dresden
+}
+%}
+\end{document}
