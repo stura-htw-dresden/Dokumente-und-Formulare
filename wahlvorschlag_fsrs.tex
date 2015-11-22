@@ -1,0 +1,95 @@
+\documentclass[fontsize=12pt,paper=a4,firsthead=true]{scrlttr2}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{libertine}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{paralist}
+\usepackage[ngerman]{hyperref}
+
+% Betreff
+\setkomavar{title}{Wahlvorschlag Fachschaftsrat}
+\setkomavar{date}{}
+\firsthead{Hinweise:
+	\begin{compactitem}
+	\item	Dieser Wahlvorschlag muss bis zum \textbf{5.\,November~2016 15:00\,Uhr}
+		beim Wahlleiter der Studentenschaft vorliegen.
+	\item	Es wird zum Einen nach dem Fachschaftsrat, der vertreten werden
+		soll, und zum Anderen nach der Fachschaft des Kandidaten
+		gefragt.  Beide Felder sind auszufüllen.
+	\item	An die angegebene Anschrift werden bei erfolgreicher Wahl die
+		Wahlbenachrichtigung und die Wahlunterlagen zur Wahl zum
+		Studentenrat versenden.
+	\item	Der Wahlvorschlag ist vom Kandidaten zu unterschreiben.
+	\end{compactitem}
+}
+
+\firstfoot{\(\dagger\) diese Felder müssen ausgefüllt werden}
+\LoadLetterOption{DIN}
+
+\begin{document}
+	\begin{letter}{StuRa HTW Dresden\\Wahlleiter\\PF~120701\\01008~Dresden}
+	\opening{}
+	\begin{Form}
+	Als \textbf{Mitglied im}
+	
+	\begin{tabularx}{\textwidth}{p{3cm}Xp{3.5cm}}
+		\textbf{Fachschaftsrat}\(^\dagger\)
+			& \TextField[width=19em,bordercolor=1 0 0,borderwidth=2pt]{~}
+			& \textsl{\scriptsize z.\,B. Informatik/Mathematik}
+			\tabularnewline
+			\addlinespace
+	\end{tabularx}
+
+	\noindent
+	kandidiert
+
+		\begin{tabularx}{\textwidth}{p{3cm}Xp{3.5cm}}
+			%Kopfzeile
+				&&
+				\tabularnewline
+			Vorname\(^\dagger\)
+				& \TextField[name=vorname,width=19em,bordercolor=1 0 0,borderwidth=2pt]{~}
+				& \textsl{\scriptsize z.\,B. Max}
+				\tabularnewline
+				\addlinespace
+			Nachname\(^\dagger\)
+				& \TextField[name=nachname,width=19em,bordercolor=1 0 0,borderwidth=2pt]{~}
+				& \textsl{\scriptsize z.\,B. Mustermann}
+				\tabularnewline
+				\addlinespace
+			Fachschaft\(^\dagger\)
+				& \TextField[name=fachschaft,width=19em,bordercolor=1 0 0,borderwidth=2pt]{~}
+				& \textsl{\scriptsize z.\,B. Informatik/Mathematik}
+				\tabularnewline
+				\addlinespace
+			Studiengr.-nr.\(^\dagger\)
+				& \TextField[name=stdgrp,width=19em,bordercolor=1 0 0,borderwidth=2pt]{~}
+				& \textsl{\scriptsize z.\,B. 12/044/71-IK}
+				\tabularnewline
+				\addlinespace
+			Geburtsdatum\(^\dagger\)
+				& \TextField[name=gebdat,width=19em,bordercolor=1 0 0,borderwidth=2pt]{~}
+				& \textsl{\scriptsize z.\,B. 01.10.1992}
+				\tabularnewline
+				\addlinespace
+			\parbox{2cm}{Anschrift\(^\dagger\)\\[3\baselineskip]}
+				& \TextField[name=anschrift,multiline,height=3\baselineskip,width=19em,bordercolor=1 0 0,borderwidth=2pt]{~}
+				& \textsl{\scriptsize\parbox{3.5cm}{z.\,B.\\Friedrich-List-Platz 1 / Z\,123\\01069 Dresden\\[4em]}}
+				\tabularnewline
+		\end{tabularx}
+
+		\vspace{1cm}
+
+		\begin{tabularx}{\linewidth}{Xl}
+			& \dotfill	\tabularnewline
+			& Unterschrift als Einverständniserklärung für Kandidatur\(^\dagger\)	\tabularnewline
+		\end{tabularx}
+	\end{Form}
+
+	\end{letter}
+\end{document}
