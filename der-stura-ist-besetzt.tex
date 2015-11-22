@@ -1,0 +1,50 @@
+%% LyX 2.1.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[20pt,ngerman]{extreport}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[a5paper]{geometry}
+\geometry{verbose,tmargin=1cm,bmargin=1cm,lmargin=1cm,rmargin=1cm,headheight=1cm,headsep=1cm,footskip=1cm}
+\pagestyle{empty}
+\setcounter{secnumdepth}{1}
+\setcounter{tocdepth}{1}
+\usepackage{graphicx}
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+\usepackage{babel}
+\begin{document}
+\begin{flushleft}
+{\LARGE{}Der}
+\par\end{flushleft}{\LARGE \par}
+
+\newcommand{\Bild}{./img/Logo-01}
+\IfFileExists{\Bild}{
+\begin{center}
+{
+	\Huge{}\includegraphics{Bild}
+}
+\par\end{center}{\Huge \par}
+}{Die Datei "\Bild{}" fehlt!}
+
+\begin{flushright}
+{\LARGE{}ist}
+\par\end{flushright}{\LARGE \par}
+
+\begin{center}
+{\Huge{}\uline{besetzt!}}
+\par\end{center}{\Huge \par}
+
+\begin{flushright}
+{\Large{}(heißt: Wir sind da.)}\linebreak{}
+\linebreak{}
+
+\par\end{flushright}
+
+\begin{center}
+{\huge{}\uline{Fragen?}}
+\par\end{center}{\huge \par}
+
+\begin{center}
+{\Large{}Der StuRa ist für euch da!}
+\par\end{center}
+\end{document}
