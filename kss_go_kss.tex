@@ -1,0 +1,104 @@
+\documentclass[
+	pdftex,
+%%%	Zweispaltigkeit, falls gewünscht
+%	twocolumn
+]{scrartcl}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tabularx}
+\usepackage[juratotoc]{scrjura}
+\usepackage{hyperref}
+%%%	Einheit, falls benötigt
+%\usepackage{units}
+%%%%	Geldangaben, falls benötigt
+%\usepackage{eurosym}
+
+%%%	Teile sollen arabische (nicht römische) Nummerierung haben.
+\renewcommand*{\thepart}{\arabic{part}}
+
+%%%	Erster Absatz soll nicht eingerückt sein.
+\setlength{\parindent}{0pt}
+
+%%%	Nummerierung der Sätze in der Vorbemerkung ermöglichen.
+\newcounter{PraeSentenceCounter}
+\setcounter{PraeSentenceCounter}{0}
+\newcommand{\PraeSentence}{\addtocounter{PraeSentenceCounter}{1}\textsuperscript{\arabic{PraeSentenceCounter}}}
+
+\title{Geschäftsordnung der Konferenz Sächsischer Studentenräte}
+\subtitle{Geschäftsordnung der Konferenz Sächsischer Studierendenschaften}
+\author{LandessprecherInnenrat}
+\date{1.\,Januar\,2014}
+
+\begin{document}
+
+\tableofcontents
+
+\maketitle
+
+\begin{contract}
+
+%\minisec{Vorbemerkung}
+%\PraeSentence erster Satz der Vorbemerkung: z.B. Die Beitragsordnung (im Folgenden BO genannt) ist Bestandteil der Ordnung der Studentenschaft der Hochschule für Technik und Wirtschaft Dresden (im Folgenden HTW Dresden genannt). 
+%\PraeSentence weiterer Satz der Vorbemerkung: Sie wird auf Grund von \S\,29 Abs.\,1 des Gesetzes über die Hochschulen im Freistaat Sachsen (Sächsisches Hochschulgesetz - SächsHSG) vom 10. Dezember 2008 (SächsGVBl. S. 900) vom Studentinnen- und Studentenrat (im Folgenden StuRa genannt) erlassen und bedarf der Genehmigung des Rektorats.
+
+\parnumberfalse\part{Grundsätzliches}\parnumbertrue
+
+\Paragraph{title=Name}
+
+\Sentence Die Konferenz der Sächsischen Studentenräte wird auch Konferenz Sächsischer Studierendenschaften (KSS) genannt.
+\Sentence Der Landessprecherrat wird als LandessprecherInnenrat (LSR) bezeichnet.
+
+\Paragraph{title=Rechtsstellung Aufgaben und Mitwirkung}\label{Rechtsstellung Aufgaben und Mitwirkung}
+
+\Sentence Die KSS besteht aus den Studierendenschaften der Hochschulen im Freistaat Sachsen nach \href{http://www.revosax.sachsen.de/Details.do?sid=4771115631165&jlink=p1}{§\,1}\,Abs.\,1\,SächsHSFG.
+\Sentence Die Studierendenräte bilden den Zusammenschluss nach \href{http://www.revosax.sachsen.de/Details.do?sid=4771115631165&jlink=p28}{§\,28}\,SächsHSFG.
+
+\Sentence Mitglieder sind alle Studierendenräte der Studierendenschaften nach Abs.\,1.
+\Sentence Eine Anerkennung weiterer Mitglieder ist möglich und bedarf einer Ordnung.
+
+\Sentence Die KSS vertritt die Interessen der Studierendenschaften.
+\Sentence Sie nimmt die Aufgaben nach \href{http://www.revosax.sachsen.de/Details.do?sid=4771115631165&jlink=p24}{§\,24}\,Abs.\,3, soweit diese einer hochschulübergreifenden Vertretung bedürfen, und \href{http://www.revosax.sachsen.de/Details.do?sid=4771115631165&jlink=p28}{§\,28}\,SächsHSFG wahr.
+
+\Paragraph{title=Wahl des LSR}\label{Wahl des LSR}
+
+Jeder Studierendenrat wählt VertreterInnen in den LSR. Die VertreterInnen werden jährlich gewählt. Das Nähere regelt der jeweilige Studierendenrat.
+
+Einzelne VertreterInnen haben eine Stimme.
+
+VertreterInnen können ihre Stimme an einE StudentIn der KSS gemäß \ref{Rechtsstellung Aufgaben und Mitwirkung} Abs.\,1 Satz\,1 übertragen, soweit der jeweilige Studierendenrat keine abweichende Regelung trifft.
+
+\Paragraph{title=Sitzungen des LSR}\label{Sitzungen des LSR}
+
+Der LSR gibt sich eine Geschäftsordnung.
+
+Insbesondere Mitglieder oder VertreterInnen gemäß \ref{Wahl des LSR} sollen Anträge an den LSR stellen.
+
+Der LSR ist beschlussfähig, wenn die Sitzung ordnungsgemäß einberufen wurde und mehr als die Hälfte
+\begin{enumerate}
+\item der Stimmen des LSR oder
+\item der Studierendenräte mit ihren VertrertInnen
+\end{enumerate}
+anwesend ist.
+
+Beschlüsse bedürfen mindestens den Erfordernissen nach \href{http://www.revosax.sachsen.de/Details.do?sid=2963315631632&jlink=p54}{§\,54} SächsHSFG.
+
+%\parnumberfalse\part{Name eines weiterer Teils}\parnumbertrue
+
+%Beispiel für eine Einheit \unit[23]{KiB}
+%Beispiel für einen Betrag \EUR{23}
+
+%\parnumberfalse\part{Schlussbestimmung}\parnumbertrue
+
+%\Paragraph{title=Schlussbestimmung}
+
+\end{contract}
+
+\newpage
+
+\parnumberfalse\minisec{Beschluss}\parnumbertrue
+
+Diese Fassung der Geschäftsordnung wurde auf der Sitzung des LandessprecherInnenrates am 7.~Dezember~2013 beschlossen.
+
+\end{document}
