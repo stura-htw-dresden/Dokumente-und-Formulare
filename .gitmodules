@@ -1,0 +1,3 @@
+[submodule "Basiswissen_Website"]
+	path = Basiswissen_Website
+	url = https://github.com/stura-htw-dresden/Basiswissen_Website.git
