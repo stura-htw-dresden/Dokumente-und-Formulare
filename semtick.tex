@@ -1,8 +1,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% filename:	semtick.tex
 %% template:	Mon, 07 May 2012 13:01:14 +0200
-%% author:	Hermann Lorenz, geändert von Fabian Kunde, Kleinigkeiten von Wolf
+%% author:	Hermann Lorenz, geändert von Fabian Kunde, Kleinigkeiten von Wolf, PT 
 %% date:
+%%	23. Aug 2016 	joshiee
+%%		* insert 29,30 (1/6) bei Betrag für Nachkauf
+%%	28. Jun 2016 	PT
+%%		* Nachkauf zu Nachkauf/Wiedernutzung
+%%		* "die Chipkarte" zu "der Studentenausweis"
+%%		* Streichungen von "Chipkarte" und "Nur möglich, wenn
+%%			vorher keine Rückerstattung, sondern eine Befreiung erfolgt ist."
+%%		* Reduziere StuRa-/StudSek-Box von 14.8em auff 14.2em
 %%	21. Nov 2015	Wolf (auf der Suche nach Beispielen für PDF-Formulare)
 %%		* Logo wirft keine Fehlermeldung mehr wenn die externe Datei fehlt
 %%		* Fallback ist das aktuelle SturaLogo und fest hier eingebettet
@@ -231,7 +239,7 @@
 	{\LARGE\textsf Antrag auf~
 		\CheckBox[name=antragbefreiung]{Befreiung}
 		\CheckBox[name=antragrueckerstattung]{Rückerstattung}
-		\CheckBox[name=antragnachkauf]{Nachkauf}}\\
+		\CheckBox[name=antragnachkauf]{Nachkauf/Wiedernutzung}}\\
 	von der Beitragsrate des studentischen Jahrestickets für das\feldumbruch
 	\CheckBox[name=fuerss]{\makebox[3cm][l]{Sommersemester}}
 		\TextField[width=2cm,name=ssjahr1]{~} (Jahr)\feldumbruch
@@ -337,7 +345,7 @@
 %%------------------------------------------------------------------------------
 %% Grund
 %%------------------------------------------------------------------------------
-\begin{InfoBlock}{Befreiungs-/Erstattungsgrund/Nachkauf \nachweis{Nachweise in Klammern}}
+\begin{InfoBlock}{Befreiungs-/Erstattungsgrund/Nachkauf/Wiedernutzung \nachweis{Nachweise in Klammern}}
 	\CheckBox[name=begruendungausland]{Auslandssemester ohne Beurlaubung}
 		\nachweis{Nachweis der Hochschule}\\
 	\CheckBox[name=begruedungpraktikum]{Praktikumssemester außerhalb des
@@ -352,7 +360,7 @@
 		\nachweis{genehmigter Urlaubssemesterantrag oder
 		Immatrikulationsbescheinigung mit dem Vermerk
 		Urlaubssemester}\feldumbruch
-	\CheckBox[name=begruedungnachkauf]{Nachkauf}
+	\CheckBox[name=begruedungnachkauf]{Nachkauf/Wiedernutzung}
 		\TextField[width=2cm,name=nachkaufgueltigkeitmonat]{Ticket
 			gültig ab} (Monat)~~/~%
 		\TextField[width=2cm,name=nachkaufgueltigkeitjahr]{~}
@@ -380,7 +388,7 @@ Kenntnis genommen habe.
 \noindent%
 \frame{\colorbox{bg-gray}
 {%
-	\parbox[top][14.8em][t]{\dimexpr.5\linewidth-2\fboxrule-7mm}
+	\parbox[top][14.2em][t]{\dimexpr.5\linewidth-2\fboxrule-7mm}
 	{%
 		\begin{tiny}Vom StuRa auszufüllen\end{tiny}\\[2ex]
 		\makebox[2.5cm][r]{Antragsdatum}~\rule{5cm}{.4pt}\\[2ex]
@@ -391,7 +399,7 @@ Kenntnis genommen habe.
 \hfill%
 \frame{\colorbox{bg-gray}
 {%
-	\parbox[top][14.8em][t]{\dimexpr.5\linewidth-2\fboxrule-7mm}
+	\parbox[top][14.2em][t]{\dimexpr.5\linewidth-2\fboxrule-7mm}
 	{%
 		\begin{tiny}Vom StudSek auszufüllen\end{tiny}\\[2ex]
 		\makebox[2.5cm][r]{Datum}~\rule{5cm}{.4pt}\\[2ex]
@@ -440,10 +448,9 @@ dieses Formblatt bietet Euch drei Möglichkeiten einen Antrag zu stellen:
 
 \item	Antrag auf Rückerstattung des studentischen Jahrestickets für ein
 	Semester (Nur möglich, wenn der Semesterbeitrag vollständig gezahlt
-	wurde und die Chipkarte bei Antragstellung vorliegt.)
+	wurde und der Studentenausweis bei Antragstellung vorliegt.)
 
-\item	Antrag auf Nachkauf des studentischen Jahrestickets (Nur möglich, wenn
-	vorher keine Rückerstattung, sondern eine Befreiung erfolgt ist. Die
+\item	Antrag auf Nachkauf/Wiedernutzung des studentischen Jahrestickets (Die
 	Nachzahlung der Beitragsrate für das studentische Jahresticket kann per
 	Überweisung an den oder per Barzahlung im StuRa erfolgen. Eine
 	Kartenzahlung ist nicht möglich!)
@@ -469,58 +476,73 @@ Es werden nur vollständige Anträge bearbeitet!
 \end{compactitem}
 
 \begin{center}
-\begin{tabular}{cccc}
+\begin{tabular}{cccccc}
 	\toprule
 		WS bis \dots
-			& SS bis \dots
-			& Betrag für Rückerstattung in Euro
-			& Betrag für Nachkauf in Euro
-			\tabularnewline
+		& SS bis \dots
+		& Betrag für Rückerstattung in Euro
+		& WS bis \dots
+		& SS bis \dots
+		& Betrag für Nachkauf/Wiedernutzung in Euro
+		\tabularnewline
 	\midrule
 			31.\,08.
 			& 28. bzw. 29.\,02.
 			& 175,80 ($\nicefrac{6}{6}$)
+			& 31.\,08.
+			& 28. bzw. 29.\,02.
 			& 175,80 ($\nicefrac{6}{6}$)
 			\tabularnewline
 			30.\,09.
 			& 31.\,03.
 			& 146,50 ($\nicefrac{5}{6}$)
+			& 30.\,09.
+			& 31.\,03.
 			& 175,80 ($\nicefrac{6}{6}$)
 			\tabularnewline
 			31.\,10.
 			& 30.\,04.
 			& 117,20 ($\nicefrac{4}{6}$)
+			& 31.\,10.
+			& 30.\,04.
 			& 146,50 ($\nicefrac{5}{6}$)
 			\tabularnewline
 			30.\,11.
 			& 31.\,05.
 			& 87,90 ($\nicefrac{3}{6}$)
+			& 30.\,11.
+			& 31.\,05.
 			& 117,20 ($\nicefrac{4}{6}$)
 			\tabularnewline
 			31.\,12.
 			& 15.\,06.
 			& 58,60 ($\nicefrac{2}{6}$)
+			& 31.\,12.
+			& 30.\,06.
 			& 87,90 ($\nicefrac{3}{6}$)
 			\tabularnewline
 			15.\,01.
-			& --- 		
+			& --- 
 			& 29,30 ($\nicefrac{1}{6}$)
+			& 31.01		
+			& 31.07
 			& 58,60 ($\nicefrac{2}{6}$)
 			\tabularnewline
-		\multicolumn{2}{c}{danach}
+			\multicolumn{2}{c}{danach}
 			& keine Rückerstattung
-			& kein Nachkauf
+			&	\multicolumn{2}{c}{danach}
+			& 29,30 ($\nicefrac{1}{6}$)
 			\tabularnewline
 	\bottomrule
 \end{tabular}
 \end{center}
 
 \emph{Aus technischen Gründen kann eine Entwertung der Studentenausweise
-(Chipkarten) und damit eine Rückerstattung nur bis spätestens zum
+und damit eine Rückerstattung nur bis spätestens zum
 15.\,06.~(SS)/""15.\,01.~(WS) erfolgen. Die Anträge sind rechtzeitig zu stellen!}
 
 Bei Rückerstattung muss der Semesterbeitrag bereits vollständig eingezahlt
-worden sein und der Studentenausweis (Chipkarte) muss bei Antragsabgabe
+worden sein und der Studentenausweis muss bei Antragsabgabe
 vorliegen, damit dieser vom Studentensekretariat zurückgesetzt werden kann.
 
 Die Überweisung kann aus verwaltungstechnischen Gründen mehrere Wochen
@@ -528,7 +550,7 @@ dauern. Auf eine Bearbeitung des Antrages innerhalb der vorlesungsfreien
 Zeit besteht kein Anspruch!
 
 Grundlage für die Befreiung bzw. Rückerstattung von studentischen
-Jahresticketbeiträgen und dem Nachkauf des studentischen Jahrestickets ist die
+Jahresticketbeiträgen und dem Nachkauf/Wiedernutzung des studentischen Jahrestickets ist die
 Beitragsordnung der Studentinnen- und Studentenschaft der Hochschule für Technik
 und Wirtschaft Dresden sowie die Verträge zwischen den Studentenräten der
 Hochschulen in der Stadt Dresden und dem VVO sowie der DVB AG und der DB Regio
@@ -545,7 +567,7 @@ Bitte informiere Dich auch auf der Internetseite des StuRa:
 Kontakt:\\
 StuRa HTW Dresden\\
 Friedrich-List-Platz~1\\
-01069~Dresen\\
+01069~Dresden\\
 \hspace{0em}
 }
 \hfill
