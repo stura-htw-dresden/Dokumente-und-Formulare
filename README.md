@@ -5,7 +5,7 @@ Dokumente und Formulare des StuRa
 
 Datei | Quelle | Stand (auf github eingepfl.)
 ----- | ------ | -----
-[semtick.tex](semtick.tex) | [Plone des StuRa](http://www.stura.htw-dresden.de/stura/ref/verwaltung/ticket/antrag/tex-datei-fuer-den-antrag-zum-studentenjahresticket/view) | 22.11.2015
+[semtick.tex](semtick.tex) | [Plone des StuRa](http://www.stura.htw-dresden.de/stura/ref/verwaltung/ticket/antrag/tex-datei-fuer-den-antrag-zum-studentenjahresticket/view) | 25.08.2016
 [ordnungen.tex](ordnungen.tex) | [Plone des Stura](http://www.stura.htw-dresden.de/stura/ref/oea/cd/cd/ordnungen/latex/ordnungen.tex/view) | 22.11.2015
 [schluesselliste.tex](schluesselliste.tex) | [Plone des Stura](http://www.stura.htw-dresden.de/stura/ref/verwaltung/raeume/schluesselliste/schluesselliste.tex/view) | 22.11.2015
 kuendigung_desk-netz.de.tex[]() | [Plone des Stura](http://www.stura.htw-dresden.de/stura/ref/verwaltung/web/domains/desk-netz.de/kuendigung/kuendigung_desk-netz.de.tex/view) | 22.11.2015
