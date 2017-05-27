@@ -1,3 +1,6 @@
 [submodule "Basiswissen_Website"]
 	path = Basiswissen_Website
 	url = https://github.com/stura-htw-dresden/Basiswissen_Website.git
+[submodule "Basiswissen_E-Mail"]
+	path = Basiswissen_E-Mail
+	url = https://github.com/stura-htw-dresden/Basiswissen_E-Mail.git
