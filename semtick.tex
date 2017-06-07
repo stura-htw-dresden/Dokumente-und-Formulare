@@ -3,6 +3,14 @@
 %% template:	Mon, 07 May 2012 13:01:14 +0200
 %% author:	Hermann Lorenz, geändert von Fabian Kunde, Kleinigkeiten von Wolf, PT 
 %% date:
+%%	07. Jun 2017	KaZ0
+%%		* Antragskopf überarbeitet
+%%		* studentisches Jahresticket ersetzt durch Semesterticket
+%%		* Nachkauf/Wiedernutzung ersetzt durch Nachkauf
+%%		* SS und WS ersetzt durch SoSe und WiSe
+%%		* Aus Abschnitt Grund CheckBox Nachkauf/Wiedernutzung entfernt
+%%		* Anpassung Beiträge für Befreiung, Rückerstattung und Nachkauf
+%%		* Format Beitragstabelle angepasst
 %%	23. Aug 2016 	joshiee
 %%		* insert 29,30 (1/6) bei Betrag für Nachkauf
 %%	28. Jun 2016 	PT
@@ -232,22 +240,10 @@
 \begin{Form}
 
 %%------------------------------------------------------------------------------
-%% Antragsart/Semester
+%% Antragskopf
 %%------------------------------------------------------------------------------
-	\parbox{\dimexpr\linewidth-4.5cm}{%
-	\noindent
-	{\LARGE\textsf Antrag auf~
-		\CheckBox[name=antragbefreiung]{Befreiung}
-		\CheckBox[name=antragrueckerstattung]{Rückerstattung}
-		\CheckBox[name=antragnachkauf]{Nachkauf/Wiedernutzung}}\\
-	von der Beitragsrate des studentischen Jahrestickets für das\feldumbruch
-	\CheckBox[name=fuerss]{\makebox[3cm][l]{Sommersemester}}
-		\TextField[width=2cm,name=ssjahr1]{~} (Jahr)\feldumbruch
-	\CheckBox[name=fuerws]{\makebox[3cm][l]{Wintersemester}}
-		\TextField[width=2cm,name=wsjahr1]{~}~~/~%
-		\TextField[width=2cm,name=wsjahr2]{~} (Jahr)
-}%
-\hfill%
+	\parbox{\dimexpr\linewidth-4,5cm}{\LARGE\textsf Antrag zum Semesterticket auf~}
+\hfill
 %%------------------------------------------------------------------------------
 %% Logo
 %%------------------------------------------------------------------------------
@@ -308,7 +304,39 @@
 %	\begin{scaletikzpicturetowidth}{\textwidth}
 		\StuRaLogo%
 %	\end{scaletikzpicturetowidth}
-}
+	}\\[2ex]
+%%------------------------------------------------------------------------------
+%% Antragsart/Semester
+%%------------------------------------------------------------------------------
+	\parbox{.5\linewidth}{%
+	\noindent
+{\CheckBox[name=antragbefreiung]{\LARGE\textsf{Befreiung,}}}}%
+\hfill
+\parbox{.5\linewidth}{%
+	\noindent
+	{\CheckBox[name=antragrueckerstattung]{\LARGE\textsf{Rückerstattung}}%
+		\,\LARGE\textsf{oder}\,
+\CheckBox[name=antragnachkauf]{\LARGE\textsf{Nachkauf}}}}
+\parbox{.38\linewidth}{~}
+\hfill
+\parbox{.62\linewidth}{%
+%\vspace{-2ex}
+	%\center{für das}
+	ab dem
+}\\[2ex]
+\parbox[b]{.5\linewidth}{%
+	\noindent
+	\CheckBox[name=fuerss]{\makebox[2.5cm][l]{Sommersemester}}
+	\TextField[width=2cm,name=ssjahr1]{~}\,(Jahr)
+}%
+\hfill%
+\parbox[b]{.5\linewidth}{%
+	\noindent%
+	\parbox{3.08cm}{~}\TextField[width=2cm,name=wsjahr1]{~}\,(Monat)\feldumbruch%
+		\CheckBox[name=fuerws]{\makebox[2.5cm][l]{Wintersemester}}
+		\TextField[width=2cm,name=wsjahr1]{~}~~/~%
+		\TextField[width=2cm,name=wsjahr2]{~}\,(Jahr)
+}%
 
 %%------------------------------------------------------------------------------
 %% allgemeine Angaben
@@ -345,7 +373,7 @@
 %%------------------------------------------------------------------------------
 %% Grund
 %%------------------------------------------------------------------------------
-\begin{InfoBlock}{Befreiungs-/Erstattungsgrund/Nachkauf/Wiedernutzung \nachweis{Nachweise in Klammern}}
+\begin{InfoBlock}{Befreiungs-/Erstattungsgrund (Nachweise in Klammern)}
 	\CheckBox[name=begruendungausland]{Auslandssemester ohne Beurlaubung}
 		\nachweis{Nachweis der Hochschule}\\
 	\CheckBox[name=begruedungpraktikum]{Praktikumssemester außerhalb des
@@ -360,11 +388,6 @@
 		\nachweis{genehmigter Urlaubssemesterantrag oder
 		Immatrikulationsbescheinigung mit dem Vermerk
 		Urlaubssemester}\feldumbruch
-	\CheckBox[name=begruedungnachkauf]{Nachkauf/Wiedernutzung}
-		\TextField[width=2cm,name=nachkaufgueltigkeitmonat]{Ticket
-			gültig ab} (Monat)~~/~%
-		\TextField[width=2cm,name=nachkaufgueltigkeitjahr]{~}
-			(Jahr)\feldumbruch
 	\CheckBox[name=begruendungsonstiges]{Sonstiges}
 		\TextField[width=.8\linewidth,name=begruedungsonstigestext]{~}
 \end{InfoBlock}
@@ -442,16 +465,16 @@ dieses Formblatt bietet Euch drei Möglichkeiten einen Antrag zu stellen:
 \footnotesize
 %\small{
 \begin{compactenum}
-\item	Antrag auf Befreiung für ein Semester vom studentischen Jahresticket
+\item	Antrag auf Befreiung für ein Semester vom Semesterticket
 	(Nur möglich, vor Ablauf des Rückmeldezeitraums und wenn der
 	Semesterbeitrag noch nicht bezahlt wurde.)
 
-\item	Antrag auf Rückerstattung des studentischen Jahrestickets für ein
+\item	Antrag auf Rückerstattung des Semestertickets für ein
 	Semester (Nur möglich, wenn der Semesterbeitrag vollständig gezahlt
 	wurde und der Studentenausweis bei Antragstellung vorliegt.)
 
-\item	Antrag auf Nachkauf/Wiedernutzung des studentischen Jahrestickets (Die
-	Nachzahlung der Beitragsrate für das studentische Jahresticket kann per
+\item	Antrag auf Nachkauf des Semestertickets (Die
+	Nachzahlung der Beitragsrate für das Semestersticket kann per
 	Überweisung an den oder per Barzahlung im StuRa erfolgen. Eine
 	Kartenzahlung ist nicht möglich!)
 \end{compactenum}
@@ -478,60 +501,60 @@ Es werden nur vollständige Anträge bearbeitet!
 \begin{center}
 \begin{tabular}{cccccc}
 	\toprule
-		WS bis \dots
-		& SS bis \dots
+		WiSe bis \dots
+		& SoSe bis \dots
 		& Betrag für Rückerstattung in Euro
-		& WS bis \dots
-		& SS bis \dots
-		& Betrag für Nachkauf/Wiedernutzung in Euro
+		& WiSe bis \dots
+		& SoSe bis \dots
+		& Betrag für Nachkauf in Euro
 		\tabularnewline
 	\midrule
 			31.\,08.
 			& 28. bzw. 29.\,02.
-			& 175,80 ($\nicefrac{6}{6}$)
+			& 184,80 ($\nicefrac{6}{6}$)
 			& 31.\,08.
 			& 28. bzw. 29.\,02.
-			& 175,80 ($\nicefrac{6}{6}$)
+			& 184,80 ($\nicefrac{6}{6}$)
 			\tabularnewline
 			30.\,09.
 			& 31.\,03.
-			& 146,50 ($\nicefrac{5}{6}$)
+			& 154,00 ($\nicefrac{5}{6}$)
 			& 30.\,09.
 			& 31.\,03.
-			& 175,80 ($\nicefrac{6}{6}$)
+			& 184,80 ($\nicefrac{6}{6}$)
 			\tabularnewline
 			31.\,10.
 			& 30.\,04.
-			& 117,20 ($\nicefrac{4}{6}$)
+			& 123,20 ($\nicefrac{4}{6}$)
 			& 31.\,10.
 			& 30.\,04.
-			& 146,50 ($\nicefrac{5}{6}$)
+			& 154,00 ($\nicefrac{5}{6}$)
 			\tabularnewline
 			30.\,11.
 			& 31.\,05.
-			& 87,90 ($\nicefrac{3}{6}$)
+			& ~~92,40 ($\nicefrac{3}{6}$)
 			& 30.\,11.
 			& 31.\,05.
-			& 117,20 ($\nicefrac{4}{6}$)
+			& 123,20 ($\nicefrac{4}{6}$)
 			\tabularnewline
 			31.\,12.
 			& 15.\,06.
-			& 58,60 ($\nicefrac{2}{6}$)
+			& ~~61,60 ($\nicefrac{2}{6}$)
 			& 31.\,12.
 			& 30.\,06.
-			& 87,90 ($\nicefrac{3}{6}$)
+			& ~~92,40 ($\nicefrac{3}{6}$)
 			\tabularnewline
 			15.\,01.
 			& --- 
-			& 29,30 ($\nicefrac{1}{6}$)
-			& 31.01		
-			& 31.07
-			& 58,60 ($\nicefrac{2}{6}$)
+			& ~~30,80 ($\nicefrac{1}{6}$)
+			& 31.\,01.		
+			& 31.\,07.
+			& ~~61,60 ($\nicefrac{2}{6}$)
 			\tabularnewline
 			\multicolumn{2}{c}{danach}
 			& keine Rückerstattung
 			&	\multicolumn{2}{c}{danach}
-			& 29,30 ($\nicefrac{1}{6}$)
+			& ~~30,80 ($\nicefrac{1}{6}$)
 			\tabularnewline
 	\bottomrule
 \end{tabular}
@@ -539,7 +562,7 @@ Es werden nur vollständige Anträge bearbeitet!
 
 \emph{Aus technischen Gründen kann eine Entwertung der Studentenausweise
 und damit eine Rückerstattung nur bis spätestens zum
-15.\,06.~(SS)/""15.\,01.~(WS) erfolgen. Die Anträge sind rechtzeitig zu stellen!}
+15.\,06.~(SoSe)/""15.\,01.~(WiSe) erfolgen. Die Anträge sind rechtzeitig zu stellen!}
 
 Bei Rückerstattung muss der Semesterbeitrag bereits vollständig eingezahlt
 worden sein und der Studentenausweis muss bei Antragsabgabe
@@ -550,11 +573,11 @@ dauern. Auf eine Bearbeitung des Antrages innerhalb der vorlesungsfreien
 Zeit besteht kein Anspruch!
 
 Grundlage für die Befreiung bzw. Rückerstattung von studentischen
-Jahresticketbeiträgen und dem Nachkauf/Wiedernutzung des studentischen Jahrestickets ist die
+Jahresticketbeiträgen und dem Nachkauf des Semestertickets ist die
 Beitragsordnung der Studentinnen- und Studentenschaft der Hochschule für Technik
 und Wirtschaft Dresden sowie die Verträge zwischen den Studentenräten der
 Hochschulen in der Stadt Dresden und dem VVO sowie der DVB AG und der DB Regio
-AG über das studentische Jahresticket.
+AG über das Semesterticket.
 
 Bitte informiere Dich auch auf der Internetseite des StuRa:
 \url{http://www.stura.htw-dresden.de}
@@ -564,7 +587,7 @@ Bitte informiere Dich auch auf der Internetseite des StuRa:
 %%------------------------------------------------------------------------------
 \noindent
 \parbox{.3\linewidth}{
-Kontakt:\\
+Anschrift:\\
 StuRa HTW Dresden\\
 Friedrich-List-Platz~1\\
 01069~Dresden\\
