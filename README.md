@@ -19,4 +19,4 @@ kuendigung_desk-netz.de.tex[]() | [Plone des Stura](http://www.stura.htw-dresden
 Submodul | Quelle | Stand (CommitID)
 -------- | ------ | -----
 [Basiswissen_Website](https://github.com/stura-htw-dresden/Basiswissen_Website/tree/fa4abdcbf0393927c308161973bbd995bfb6ef56) | [Plone Nutzerhandbuch von Veit Schiele](http://www.plone-nutzerhandbuch.de/) | @fa4abdc
-[Basiswissen_E-Mail](https://github.com/stura-htw-dresden/Basiswissen_E-Mail/tree/8be78a7171ac78b2e4fee6e30f5fd77da9ce63a3) | E-Mail Nutzung an der HTW | @8be78a7
+[Basiswissen_E-Mail](https://github.com/stura-htw-dresden/Basiswissen_E-Mail/tree/2b7d863639d080a8b17d70ef91a8c945bc178d74) | E-Mail Nutzung an der HTW | @8be78a7
