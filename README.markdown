@@ -25,5 +25,5 @@ Formular-Style StuRa | von semtick.tex ableiten | 08.06.2017 todo: nach Aussage 
 ## Liste der Submodule
 Submodul | Quelle | Stand (CommitID)
 -------- | ------ | -----
-[Basiswissen_Website](https://github.com/stura-htw-dresden/Basiswissen_Website/tree/fa4abdcbf0393927c308161973bbd995bfb6ef56) | [Plone Nutzerhandbuch von Veit Schiele](http://www.plone-nutzerhandbuch.de/) | @fa4abdc
+[Basiswissen_Website](https://github.com/stura-htw-dresden/Basiswissen_Website/tree/25dff3a22a616f7077336935898778191e100c66) | [Plone Nutzerhandbuch von Veit Schiele](http://www.plone-nutzerhandbuch.de/) | @fa4abdc
 [Basiswissen_E-Mail](https://github.com/stura-htw-dresden/Basiswissen_E-Mail/tree/2b7d863639d080a8b17d70ef91a8c945bc178d74) | E-Mail Nutzung an der HTW | @8be78a7
